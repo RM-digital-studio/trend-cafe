@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Cafe - Specialty Coffee & Bakery in Skopje</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset & Base Styles */
+        :root {
+            --primary-bg: #f8f4ed; /* Light cream */
+            --secondary-bg: #e6e0d8; /* Light warm grey/beige */
+            --text-color: #3a2d21; /* Dark brown/charcoal */
+            --heading-color: #5e4a3d; /* Medium brown */
+            --accent-color: #a87b5c; /* Warm rust/gold */
+            --accent-hover: #c08e67; /* Lighter rust/gold */
+            --border-color: #d1c9bd; /* Subtle warm grey */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--heading-color);
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.8em; }
+        h2 { font-size: 2.2em; text-align: center; margin-bottom: 1.5em;}
+        h3 { font-size: 1.6em; }
+        p { margin-bottom: 1em; }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: var(--accent-hover);
+            color: #fff; /* Ensure text color stays white on hover */
+        }
+
+        section {
+            padding: 80px 0;
+        }
+        section:nth-of-type(even) {
+            background-color: var(--secondary-bg);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--secondary-bg);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--heading-color);
+        }
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+        .nav-menu li {
+            margin-left: 30px;
+        }
+        .nav-menu a {
+            font-weight: 600;
+            color: var(--text-color);
+            padding: 5px 0;
+            position: relative;
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation Toggle */
+        .nav-toggle {
+            display: none;
+        }
+        .nav-toggle-label {
+            display: none; /* Hidden by default, shown on mobile */
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 1001;
+            align-self: center; /* Center vertically if logo is wider */
+        }
+        .nav-toggle-label span,
+        .nav-toggle-label span::before,
+        .nav-toggle-label span::after {
+            display: block;
+            background: var(--heading-color);
+            height: 3px;
+            width: 100%;
+            border-radius: 2px;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+        .nav-toggle-label span {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .nav-toggle-label span::before {
+            content: '';
+            top: -8px;
+        }
+        .nav-toggle-label span::after {
+            content: '';
+            top: 8px;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://source.unsplash.com/random/1600x900/?coffee-shop-interior,bakery') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 150px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh; /* Make hero section taller */
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        #hero h1 {
+            font-size: 3.8em;
+            margin-bottom: 0.5em;
+            color: #fff;
+        }
+        #hero p {
+            font-size: 1.4em;
+            margin-bottom: 2em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+        #hero .btn {
+            padding: 15px 35px;
+            font-size: 1.1em;
+        }
+
+        /* About Section */
+        #about p {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 3em;
+        }
+        .menu-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        .menu-item h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .menu-item p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .menu-item ul {
+            list-style: none;
+        }
+        .menu-item li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--border-color);
+            font-size: 1.05em;
+        }
+        .menu-item li:last-child {
+            border-bottom: none;
+        }
+        .menu-item li span {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 3em;
+        }
+        .contact-info div {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+        .contact-info h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        .contact-info p {
+            margin-bottom: 0.5em;
+            font-size: 1em;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9em;
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        footer p {
+            margin: 0;
+        }
+        .social-links a {
+            color: var(--heading-color);
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 1.8em; }
+            #hero h1 { font-size: 2.8em; }
+            #hero p { font-size: 1.2em; }
+            #hero { padding: 100px 20px; min-height: 60vh; }
+            section { padding: 60px 0; }
+
+            /* Mobile Nav */
+            header .container {
+                flex-wrap: wrap;
+                justify-content: space-between; /* Keep logo and toggle separated */
+            }
+            .logo {
+                margin-bottom: 0; /* Reset margin for logo */
+                flex-grow: 1; /* Allow logo to take space */
+            }
+            .nav-toggle-label {
+                display: block;
+            }
+            nav {
+                width: 100%;
+                text-align: center;
+                order: 2; /* Put nav below logo/toggle */
+            }
+            .nav-menu {
+                position: absolute;
+                top: 100%; /* Position below header */
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-bg);
+                flex-direction: column;
+                padding: 20px 0;
+                border-top: 1px solid var(--border-color);
+                transform: translateY(-100%); /* Initially hide */
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            }
+            .nav-menu li {
+                margin: 0;
+            }
+            .nav-menu a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .nav-menu a::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .nav-menu a:hover::after {
+                width: 50%; /* Smaller hover line for mobile */
+            }
+            .nav-menu li:last-child a {
+                border-bottom: none;
+            }
+
+            .nav-toggle:checked + .nav-toggle-label + .nav-menu {
+                transform: translateY(0); /* Show menu */
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            /* Hamburger animation */
+            .nav-toggle:checked + .nav-toggle-label span {
+                background: transparent;
+            }
+            .nav-toggle:checked + .nav-toggle-label span::before {
+                top: 0;
+                transform: rotate(45deg);
+            }
+            .nav-toggle:checked + .nav-toggle-label span::after {
+                top: 0;
+                transform: rotate(-45deg);
+            }
+
+            .menu-grid, .contact-info {
+                grid-template-columns: 1fr;
+            }
+            .menu-item, .contact-info div {
+                margin-bottom: 20px; /* Add some space between stacked items */
+            }
+            footer .container {
+                flex-direction: column;
+            }
+            footer p {
+                margin-bottom: 15px;
+            }
+            .social-links a {
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            #hero h1 { font-size: 2em; }
+            #hero p { font-size: 1em; }
+            #hero .btn { padding: 10px 25px; font-size: 1em; }
+
+            .logo { font-size: 1.8em; margin-bottom: 0; }
+            .nav-toggle-label { width: 25px; height: 18px; }
+            .nav-toggle-label span,
+            .nav-toggle-label span::before,
+            .nav-toggle-label span::after { height: 2px; }
+            .nav-toggle-label span::before { top: -6px; }
+            .nav-toggle-label span::after { top: 6px; }
+
+            .menu-item ul { padding: 0 10px; }
+            .menu-item li { font-size: 0.95em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Trend Cafe</a>
+            <nav>
+                <input type="checkbox" id="nav-toggle" class="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle-label">
+                    <span></span>
+                </label>
+                <ul class="nav-menu">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Taste the Trend, Sip the Perfection.</h1>
+                <p>Your daily dose of specialty coffee, fresh croissants, and custom cakes in Skopje.</p>
+                <a href="#menu" class="btn">Explore Our Menu</a>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <h2>Our Story</h2>
+            <p>Welcome to Trend Cafe, Skopje's newest destination for coffee aficionados and pastry lovers. We believe in crafting exceptional experiences, one cup and one bite at a time. Our carefully sourced specialty espresso beans are expertly brewed to perfection, offering a rich and aromatic journey.</p>
+            <p>Indulge in our selection of freshly baked croissants, flaky and golden, perfect with your morning coffee. For those special occasions, our skilled bakers create stunning custom cakes that taste as incredible as they look. Enjoy the warm atmosphere indoors or relax in our cozy outdoor seating area, a perfect spot to unwind and savor the moment.</p>
+        </section>
+
+        <section id="menu" class="container">
+            <h2>Our Delights</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Specialty Espresso</h3>
+                    <p>Experience the rich flavors of our carefully selected beans.</p>
+                    <ul>
+                        <li>Espresso<span>120 MKD</span></li>
+                        <li>Cappuccino<span>150 MKD</span></li>
+                        <li>Latte<span>160 MKD</span></li>
+                        <li>Americano<span>130 MKD</span></li>
+                    </ul>
+                </div>
+                <div class="menu-item">
+                    <h3>Freshly Baked Pastries</h3>
+                    <p>Baked daily, a perfect treat for any time of day.</p>
+                    <ul>
+                        <li>Classic Croissant<span>90 MKD</span></li>
+                        <li>Chocolate Croissant<span>100 MKD</span></li>
+                        <li>Almond Croissant<span>110 MKD</span></li>
+                        <li>Pain au Chocolat<span>100 MKD</span></li>
+                    </ul>
+                </div>
+                <div class="menu-item">
+                    <h3>Custom Cakes</h3>
+                    <p>Beautifully crafted cakes for your celebrations.</p>
+                    <ul>
+                        <li>Signature Chocolate Cake<span>(Inquire)</span></li>
+                        <li>Red Velvet Delight<span>(Inquire)</span></li>
+                        <li>Seasonal Fruit Tart<span>(Inquire)</span></li>
+                        <li>Personalized Design<span>(Inquire)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Visit Us</h2>
+                <div class="contact-info">
+                    <div>
+                        <h3>Location</h3>
+                        <p>123 Coffee Lane, Centar,<br>Skopje, North Macedonia</p>
+                    </div>
+                    <div>
+                        <h3>Hours</h3>
+                        <p>Mon - Fri: 7:00 AM - 7:00 PM</p>
+                        <p>Sat - Sun: 8:00 AM - 6:00 PM</p>
+                    </div>
+                    <div>
+                        <h3>Get in Touch</h3>
+                        <p>Email: info@trendcafe.mk</p>
+                        <p>Phone: +389 7X XXX XXX</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Trend Cafe. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
